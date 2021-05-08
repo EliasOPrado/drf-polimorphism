@@ -1,3 +1,4 @@
+import json
 from rest_framework import serializers
 from polimorfismapp.models import CarModel, Sony, Pioneer
 
@@ -11,7 +12,8 @@ class CarModelSerializer(serializers.ModelSerializer):
         fields = [
             'name',
             'object_id',
-            'content_object'
+            'content_object',
+            'content_type'
         ]
 
 class CarModelObjectRelatedField(serializers.RelatedField):
@@ -30,7 +32,6 @@ class CarModelObjectRelatedField(serializers.RelatedField):
 class SonySerializer(serializers.HyperlinkedModelSerializer):
 
     carmodels = CarModelObjectRelatedField(read_only=True)
-    # carmodels= serializers.HyperlinkedIdentityField(view_name="polimorfismapp:carmodel-detail")
 
     class Meta:
         model = Sony
@@ -40,7 +41,9 @@ class SonySerializer(serializers.HyperlinkedModelSerializer):
             ]
 
 class PioneerSerializer(serializers.HyperlinkedModelSerializer):
+
     carmodels = CarModelObjectRelatedField(read_only=True)
+
     class Meta:
         model = Pioneer
         fields = [

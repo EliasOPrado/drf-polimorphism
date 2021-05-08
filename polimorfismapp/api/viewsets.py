@@ -10,10 +10,10 @@ class CarModelViewSet(viewsets.ModelViewSet):
     queryset = CarModel.objects.all()
 
 
-class PioneerViewSet(viewsets.ModelViewSet):
+class SonyViewSet(viewsets.ModelViewSet):
     serializer_class = SonySerializer
     queryset = Sony.objects.all()
 
-class SonyModelViewSet(viewsets.ModelViewSet):
+class PioneerViewSet(viewsets.ModelViewSet):
     serializer_class = PioneerSerializer
     queryset = Pioneer.objects.all()
